@@ -13,17 +13,20 @@ function App() {
 
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
 
-  const addGuessedLetter = useCallback((letter: string) => {
-    if (guessedLetters.includes(letter) || isWinner || isWinner) return;
-    setGuessedLetters(guessedLetters => [...guessedLetters, letter])
-}, [guessedLetters])
-
-  const incorrectLetters = guessedLetters.filter(letter => !wordToGuess.includes(letter) == true)
+  const incorrectLetters = guessedLetters
+    .filter(letter => !wordToGuess.includes(letter) == true)
 
   const isLoser = incorrectLetters.length >= 6
   const isWinner = wordToGuess
     .split("")
     .every(letter => guessedLetters.includes(letter))
+
+  const addGuessedLetter = useCallback((letter: string) => {
+    if (guessedLetters.includes(letter) || isWinner || isWinner) return;
+    setGuessedLetters(guessedLetters => [...guessedLetters, letter])
+}, [guessedLetters, isWinner, isLoser])
+
+  
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -67,7 +70,11 @@ function App() {
       {isLoser && <h2>Try again. Refresh the page to restart.</h2>}
     </div>
     <HangmanDrawing numberOfWrongGuesses = {incorrectLetters.length}/>
-    <HangmanWord reveal= {isLoser} guessedLetters = {guessedLetters} wordToGuess = {wordToGuess}/>
+    <HangmanWord 
+      reveal= {isLoser} 
+      guessedLetters = {guessedLetters} 
+      wordToGuess = {wordToGuess}
+    />
     <div style={{alignSelf: "stretch"}}>
       <Keyboard 
         disabled = {isWinner || isLoser}
