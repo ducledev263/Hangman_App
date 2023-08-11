@@ -78,7 +78,8 @@ function App() {
     <div style={{alignSelf: "stretch"}}>
       <Keyboard 
         disabled = {isWinner || isLoser}
-        activeLetters = {guessedLetters.filter(letter => wordToGuess.includes(letter))}
+        activeLetters = {guessedLetters
+          .filter(letter => wordToGuess.includes(letter))}
         inactiveLetters = {incorrectLetters}
         addGuessedLetter = {addGuessedLetter}
         />
