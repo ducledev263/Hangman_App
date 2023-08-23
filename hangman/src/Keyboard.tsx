@@ -1,4 +1,3 @@
-import { KeyboardEvent } from "react";
 import styles from "./Keyboard.module.css"
 
 const KEYS = [
