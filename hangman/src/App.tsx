@@ -66,7 +66,7 @@ function App() {
     alignItems: "center"
   }}>
     <div style={{font: "Arial", fontSize: "2rem", fontStyle: "italic"}}>
-      {isWinner && <h2>Congratulation, you won!!. Refresh the page to restart.</h2>}
+      {isWinner && <h2>Congratulation, you won!! Refresh the page to restart.</h2>}
       {isLoser && <h2>Try again. Refresh the page to restart.</h2>}
     </div>
     <HangmanDrawing numberOfWrongGuesses = {incorrectLetters.length}/>
